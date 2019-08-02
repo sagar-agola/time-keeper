@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using Time_Keeper.Models;
 using Time_Keeper.Repositories;
+using Time_Keeper.Helpers;
 
 namespace Time_Keeper
 {
@@ -24,7 +24,7 @@ namespace Time_Keeper
         {
             List<ProjectModel> projects = _projectRepository.GetAll();
 
-            cboProjects.DataSource = ConvertToDatatable(projects);
+            cboProjects.DataSource = Helper.ConvertToDatatable(projects);
             cboProjects.DisplayMember = "Title";
             cboProjects.ValueMember = "Id";
 
@@ -50,7 +50,6 @@ namespace Time_Keeper
                     {
                         DataTable dt = new DataTable();
 
-                        dt.Columns.Add("Id", typeof(int));
                         dt.Columns.Add("Project Name", typeof(string));
                         dt.Columns.Add("Start Date", typeof(string));
                         dt.Columns.Add("End Date", typeof(string));
@@ -59,7 +58,6 @@ namespace Time_Keeper
                         {
                             DataRow dr = dt.NewRow();
 
-                            dr["Id"] = workRecord.Id;
                             dr["Project Name"] = workRecord.ProjectModel.Title;
                             dr["Start Date"] = workRecord.StartDate;
                             dr["End Date"] = workRecord.EndDate == null ? "-" : (object)workRecord.EndDate;
@@ -69,9 +67,9 @@ namespace Time_Keeper
 
                         grid.DataSource = dt;
 
-                        grid.Columns[0].Width = 50;
-                        grid.Columns[grid.Columns.Count - 1].Width = 200;
-                        grid.Columns[grid.Columns.Count - 2].Width = 200;
+                        grid.Columns[0].Width = 240;
+                        grid.Columns[1].Width = 200;
+                        grid.Columns[2].Width = 200;
 
                         DataRow lastRow = dt.Rows[dt.Rows.Count - 1];
 
@@ -85,6 +83,10 @@ namespace Time_Keeper
                             btnStartWork.Enabled = true;
                             btnFinishWork.Enabled = false;
                         }
+                    }
+                    else
+                    {
+                        btnStartWork.Enabled = true;
                     }
                 }
             }
@@ -132,29 +134,10 @@ namespace Time_Keeper
             cboProjects_SelectedIndexChanged(sender, e);
         }
 
-        private static DataTable ConvertToDatatable(List<ProjectModel> data)
+        private void btnViewAnalysis_Click(object sender, EventArgs e)
         {
-            PropertyDescriptorCollection props = TypeDescriptor.GetProperties(typeof(ProjectModel));
-            DataTable table = new DataTable();
-
-            for (int i = 0; i < props.Count; i++)
-            {
-                PropertyDescriptor prop = props[i];
-                table.Columns.Add(prop.Name, prop.PropertyType);
-            }
-
-            object[] values = new object[props.Count];
-
-            foreach (ProjectModel project in data)
-            {
-                for (int i = 0; i < values.Length; i++)
-                {
-                    values[i] = props[i].GetValue(project);
-                }
-                table.Rows.Add(values);
-            }
-
-            return table;
+            Analysis analysis = new Analysis();
+            analysis.Show();
         }
     }
 }

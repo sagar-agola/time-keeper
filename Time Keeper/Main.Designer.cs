@@ -34,13 +34,14 @@
             this.grid = new System.Windows.Forms.DataGridView();
             this.btnStartWork = new System.Windows.Forms.Button();
             this.btnFinishWork = new System.Windows.Forms.Button();
+            this.btnViewAnalysis = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 64);
+            this.label1.Location = new System.Drawing.Point(10, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 25);
             this.label1.TabIndex = 0;
@@ -49,7 +50,7 @@
             // cboProjects
             // 
             this.cboProjects.FormattingEnabled = true;
-            this.cboProjects.Location = new System.Drawing.Point(165, 61);
+            this.cboProjects.Location = new System.Drawing.Point(152, 60);
             this.cboProjects.Name = "cboProjects";
             this.cboProjects.Size = new System.Drawing.Size(224, 33);
             this.cboProjects.TabIndex = 1;
@@ -74,7 +75,7 @@
             this.grid.Name = "grid";
             this.grid.ReadOnly = true;
             this.grid.RowTemplate.Height = 24;
-            this.grid.Size = new System.Drawing.Size(593, 220);
+            this.grid.Size = new System.Drawing.Size(685, 221);
             this.grid.TabIndex = 4;
             // 
             // btnStartWork
@@ -97,19 +98,30 @@
             this.btnFinishWork.UseVisualStyleBackColor = true;
             this.btnFinishWork.Click += new System.EventHandler(this.btnFinishWork_Click);
             // 
+            // btnViewAnalysis
+            // 
+            this.btnViewAnalysis.Location = new System.Drawing.Point(258, 12);
+            this.btnViewAnalysis.Name = "btnViewAnalysis";
+            this.btnViewAnalysis.Size = new System.Drawing.Size(190, 43);
+            this.btnViewAnalysis.TabIndex = 7;
+            this.btnViewAnalysis.Text = "View Analysis";
+            this.btnViewAnalysis.UseVisualStyleBackColor = true;
+            this.btnViewAnalysis.Click += new System.EventHandler(this.btnViewAnalysis_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 380);
+            this.ClientSize = new System.Drawing.Size(709, 379);
+            this.Controls.Add(this.btnViewAnalysis);
             this.Controls.Add(this.btnFinishWork);
             this.Controls.Add(this.btnStartWork);
             this.Controls.Add(this.grid);
             this.Controls.Add(this.btnCreateProject);
             this.Controls.Add(this.cboProjects);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -129,6 +141,7 @@
         private System.Windows.Forms.DataGridView grid;
         private System.Windows.Forms.Button btnStartWork;
         private System.Windows.Forms.Button btnFinishWork;
+        private System.Windows.Forms.Button btnViewAnalysis;
     }
 }
 
